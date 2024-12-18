@@ -3,7 +3,7 @@ import Register from "@/app/components/register"
 
 const AdminDashboard = () => {
   return (
-    <div>AdminDashboard
+    <div>
         <Register/>
     </div>
   )

@@ -74,7 +74,7 @@ const Register = () => {
     }
 
     return (
-        <div id="register" className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-700 to-blue-900">
+        <div id="register" className="flex items-center justify-center">
             <form onSubmit={handleForm} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg">
                 <h1 className="text-2xl font-bold text-blue-900 mb-6 text-center">Register</h1>
 

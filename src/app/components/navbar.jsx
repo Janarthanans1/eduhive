@@ -2,13 +2,16 @@
 import { useState } from "react";
 import { GraduationCap } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname,useRouter } from "next/navigation";
+import { useData } from "@/context/context";
+import Logoutbtn from "@/app/components/logoutbtn"
+
+
 
 const Navbar = () => {
   const { push } = useRouter();
   const pathname = usePathname();
-
+  const { userRole, setUserRole } = useData()
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -35,9 +38,6 @@ const Navbar = () => {
           <Link href="/pages/courses">
             <li className="hover:underline cursor-pointer">Courses</li>
           </Link>
-          <Link href="/pages/about">
-            <li className="hover:underline cursor-pointer">About</li>
-          </Link>
           <Link href="/pages/contact">
             <li className="hover:underline cursor-pointer">Contact</li>
           </Link>
@@ -46,13 +46,18 @@ const Navbar = () => {
           </Link>
           {/* Dashboard Button */}
           <li>
-            <button
-              type="button"
-              onClick={() => push("/pages/admin_dashboard")}
-              className="bg-white px-5 py-2 rounded text-blue-800 font-bold"
-            >
-              Dashboard
-            </button>
+            
+              {userRole==="admin"?(<button
+                type="button"
+                onClick={() => push("/pages/admin_dashboard")}
+                className="bg-white px-5 py-2 rounded text-blue-800 font-bold"
+              >
+                Dashboard
+              </button>):<p></p>}
+
+          </li>
+          <li>
+                <Logoutbtn/>
           </li>
         </ul>
       </div>
@@ -85,9 +90,6 @@ const Navbar = () => {
             <Link href="/pages/courses">
               <li className="hover:underline cursor-pointer">Courses</li>
             </Link>
-            <Link href="/pages/about">
-              <li className="hover:underline cursor-pointer">About</li>
-            </Link>
             <Link href="/pages/contact">
               <li className="hover:underline cursor-pointer">Contact</li>
             </Link>
@@ -96,13 +98,17 @@ const Navbar = () => {
             </Link>
             {/* Dashboard Button in Mobile Menu */}
             <li>
-              <button
+
+            {userRole==="admin"?(<button
                 type="button"
                 onClick={() => push("/pages/admin_dashboard")}
-                className="hover:underline cursor-pointer"
+                className="bg-white px-5 py-2 rounded text-blue-800 font-bold"
               >
                 Dashboard
-              </button>
+              </button>):<p></p>}
+            </li>
+            <li>
+              <Logoutbtn/>
             </li>
           </ul>
         </div>
@@ -112,3 +118,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
